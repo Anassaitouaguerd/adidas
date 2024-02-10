@@ -7,10 +7,11 @@ class Categories extends Model
 {
   protected $info_category = [
     'name',
+    'image',
   ];
   public function product()
   {
-      return $this->belongsTo(Categories::class);
+      return $this->hasMany(Product::class);
   }
   
 }

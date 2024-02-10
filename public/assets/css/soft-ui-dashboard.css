@@ -26572,7 +26572,11 @@ pre[class*="language-"] {
 .token.italic {
   font-style: italic;
 }
-
+.image_cat{
+  border-radius: 4px;
+  width: 55px;
+  height: 55px;
+}
 button[type="button"]
 {
   

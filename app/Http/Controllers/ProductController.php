@@ -21,7 +21,7 @@ class ProductController extends Controller
             ->select('products.*', 'categories.name as category_name')->get();
         $all_product = $product;
         $all_categories = $this->category::all();
-        return view('Products', compact('all_product', 'all_categories'));
+        return view('Back-office.Products', compact('all_product', 'all_categories'));
     }
     public function new_product(Request $request)
     {
