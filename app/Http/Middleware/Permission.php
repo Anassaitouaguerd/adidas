@@ -21,17 +21,17 @@ class Permission
         $role_id = session('user_role') ?? '';
         if ($role_id){
 
-            #get all role_id in Role_permission to this id 
+            # get all role_id in Role_permission to this id 
 
             $rolePermissions = Role_permission::where('role_id', $role_id)->get();
 
             foreach ($rolePermissions as $rolePermission) 
             {
-                #access to the function permission in my model Role_permission
+                # access to the function permission in my model Role_permission
 
                 $permission = $rolePermission->permission;
                 
-                #check the permissions for any route
+                # check the permissions for any route
 
                 if (count(explode('/', $uri)) > 2) {
                     

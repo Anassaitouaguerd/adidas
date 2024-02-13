@@ -20,6 +20,11 @@
         <div class="nav-item submenu">
             <span class="nav-link">welcom, {{ session('user_name') }}</span>
         </div>
+        <div class="nav-item submenu mx-4">
+                <a href="/" type="button" class="btn bg-gradient-dark mb-0">
+                    Home
+                </a>
+        </div>
         <div class="nav-item submenu">
             <form action="/logout" method="POST">
                 @csrf

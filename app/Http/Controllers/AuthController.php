@@ -42,7 +42,7 @@ class AuthController extends Controller
         if ($user && Hash::check($attributes['password'], $user->password)) {
             $request->session()->put('user_id', $user->id);
             $request->session()->put('user_name', $user->name);
-            $request->session()->put('user_role', $user->role->id);
+            $request->session()->put('user_role', $user->role_id);
             return redirect('/')->with('success', 'Login successful');
         } else {
             return back()->withErrors(['email' => 'the email or password could not be verified']);

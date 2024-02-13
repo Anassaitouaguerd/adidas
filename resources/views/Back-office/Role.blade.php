@@ -38,7 +38,7 @@
     <!-- Nepcha Analytics (nepcha.com) -->
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -51,22 +51,22 @@
             <div class="row">
                 <div>
                     <div class="row">
-                        <div class="col-md-12 mb-lg-0 mb-4">
+                        <div class=" mb-4">
                             <div class="card mt-4">
                                 <div class="card-header pb-0 p-3">
                                     <div class="row">
-                                        <div class="col-6 d-flex align-items-center">
-
+                                        <div class="d-flex align-items-center">
+                                            <h6 class="mb-0">Payment Method</h6>
                                         </div>
                                         <div class="col-6 text-end">
                                             <button type="button" class="btn bg-gradient-dark mb-0"
                                                 data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New User
+                                                <i class="fas fa-plus"></i>&nbsp;&nbsp;Add New Role
                                             </button>
                                         </div>
                                     </div>
-                                </div>  
-                                {{-- modal to add new user --}}
+                                </div>
+                                {{-- modal to add new categories --}}
 
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -80,33 +80,25 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="/admin/newUser" method="POST" class="mt-4"
+                                                <form action="/SuperAdmin/newRole" method="POST" class="mt-4"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="form-group">
-                                                        <label for="name">Name User</label>
+                                                        <label for="name">Role Name</label>
                                                         <input type="text" class="form-control" id="name"
-                                                            name="name" placeholder="Enter username">
+                                                            name="name" placeholder="Enter category name">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="name">Email User</label>
-                                                        <input type="email" class="form-control" id="email"
-                                                            name="email" placeholder="Enter Email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="name">Password User</label>
-                                                        <input type="password" class="form-control" id="password"
-                                                            name="password" placeholder="Enter Password">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="role">Role User</label>
-                                                        <select class="form-control" id="role" name="role">
-                                                            @foreach ($allRole as $role)
-                                                                <option value="{{ $role->id }}">{{ $role->role }}
-                                                                </option>
+                                                        <label for="name">Role Permissions</label>
+                                                        <select id="select-state" name="permission[]" multiple
+                                                            placeholder="Select a state..." autocomplete="off">
+                                                            @foreach ($allPermissions as $permission)
+                                                                <option value="{{ $permission->id }}">
+                                                                    {{ $permission->permissions }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
@@ -119,40 +111,30 @@
                                 </div>
                                 {{-- end madale add new categoris --}}
                                 <div class="card-body p-3">
+                                    <h4 class="mb-3 text-sm">Name categories</h4>
                                     <div class="card-body pt-4 p-3">
-                                        @if (session()->has('successUser'))
-                                            <div class="rounded-3 w-70 text-center bg-body-secondary p-1 ms-7"
-                                                x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show">
-                                                <h5 class="text-body text-bolder"> {{ session('successUser') }} </h5>
-                                            </div>
-                                        @endif
                                         <ul class="list-group">
-                                            @foreach ($allUser as $user)
+                                            @foreach ($allRoles as $role)
                                                 <li
                                                     class="list-group-item border-0 d-flex justify-content-center p-4 mb-2 bg-gray-100 border-radius-lg">
                                                     <div class="d-flex justify-content-center align-items-center">
-                                                        <h5 class="ms-4 mb-3 text-sm"> {{ $user->name }}</h5>
-                                                        <h5 class="ms-4 mb-3 text-sm"> {{ $user->email }}</h5>
-                                                        <h5
-                                                            class="ms-4 mb-3 text-sm rounded-3 text-center bg-body-secondary p-2">
-                                                            {{ $user->role->role }}</h5>
+                                                        <h5 class="ms-4 mb-3 text-sm"> {{ $role->role }}</h5>
                                                     </div>
                                                     <div class="ms-auto text-end">
-                                                        <button
-                                                            class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                                        <button class="btn btn-link text-danger text-gradient px-3 mb-0"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#modaleDelete{{ $user->id }}">
+                                                            data-bs-target="#modaleDelete{{ $role->id }}">
                                                             <i class="far fa-trash-alt me-2"></i>Delete
                                                         </button>
                                                         <button class="btn btn-link text-dark px-3 mb-0"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#modaleUpdate{{ $user->id }}">
+                                                            data-bs-target="#modaleUpdate{{ $role->id }}">
                                                             <i class="fas fa-pencil-alt text-dark me-2"></i>Edit</a>
                                                         </button>
                                                     </div>
-                                                    {{-- modal to update user --}}
+                                                    {{-- modal to update categories --}}
 
-                                                    <div class="modal fade" id="modaleUpdate{{ $user->id }}"
+                                                    <div class="modal fade" id="modaleUpdate{{ $role->id }}"
                                                         tabindex="-1" role="dialog"
                                                         aria-labelledby="modaleUpdatetitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered"
@@ -168,49 +150,32 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <form action="/admin/updateUser" method="POST"
-                                                                        class="mt-4">
+                                                                    <form action="/SuperAdmin/updateRole"
+                                                                        method="POST" class="mt-4"
+                                                                        enctype="multipart/form-data">
                                                                         @csrf
                                                                         <input type="hidden"
-                                                                            value="{{ $user->id }}"
+                                                                            value="{{ $role->id }}"
                                                                             name="id">
                                                                         <div class="form-group">
-                                                                            <label for="name">Name User</label>
+                                                                            <label for="name">Role Name</label>
                                                                             <input type="text"
-                                                                                value="{{ $user->name }}"
+                                                                                value="{{ $role->name }}"
                                                                                 class="form-control" id="name"
                                                                                 name="name"
-                                                                                placeholder="Enter username">
+                                                                                placeholder="Enter Role name">
                                                                         </div>
                                                                         <div class="form-group">
-                                                                            <label for="name">Email User</label>
-                                                                            <input type="email"
-                                                                                value="{{ $user->email }}"
-                                                                                class="form-control" id="email"
-                                                                                name="email"
-                                                                                placeholder="Enter Email">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="name">Password User</label>
-                                                                            <input type="password"
-                                                                                class="form-control" id="password"
-                                                                                name="password"
-                                                                                placeholder="Enter Password">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="role">Role User</label>
-                                                                            <select class="form-control"
-                                                                                id="role" name="role">
-                                                                                @foreach ($allRole as $role)
-                                                                                    <option
-                                                                                        value="{{ $role->id }}">
-                                                                                        {{ $role->role }}
-                                                                                    </option>
-                                                                                @endforeach
+                                                                            <label for="name">Role
+                                                                                Permissions</label>
+                                                                            <select id="select-state"
+                                                                                name="permission[]" multiple
+                                                                                placeholder="Select a state..."
+                                                                                autocomplete="off">
+
+                                                                                <option value="AL">Alabama</option>
                                                                             </select>
                                                                         </div>
-
-
 
                                                                 </div>
                                                                 <div class="modal-footer">
@@ -223,12 +188,12 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {{-- end madale update user --}}
+                                                    {{-- end madale update categories --}}
 
 
-                                                    {{-- modal to delete user --}}
+                                                    {{-- modal to delete categories --}}
 
-                                                    <div class="modal fade" id="modaleDelete{{ $user->id }}"
+                                                    <div class="modal fade" id="modaleDelete{{ $role->id }}"
                                                         tabindex="-1" role="dialog"
                                                         aria-labelledby="modaleDeleteTitle" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered"
@@ -243,16 +208,17 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <p>Are you sure you want to delete this user?
+                                                                    <p>Are you sure you want to delete this role?
                                                                     </p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
                                                                         data-bs-dismiss="modal">Cancel</button>
-                                                                    <form action="/admin/deleteUser" method="POST">
+                                                                    <form action="/SuperAdmin/deleteRole"
+                                                                        method="POST">
                                                                         @csrf
                                                                         <input type="hidden"
-                                                                            value="{{ $user->id }}"
+                                                                            value="{{ $role->id }}"
                                                                             name="id">
                                                                         <button type="submit"
                                                                             class="btn btn-danger">Delete</button>
@@ -261,7 +227,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    {{-- end modal to delete user --}}
+                                                    {{-- end modal to delete categories --}}
 
 
                                                 </li>
@@ -284,6 +250,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -296,15 +263,16 @@
             }
             Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
         }
-        // tom select
-        new TomSelect("#select-state", {
-            maxItems: 10
-        });
     </script>
     <!-- Github buttons -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+    <script>
+        new TomSelect("#select-state", {
+            maxItems: 100
+        });
+    </script>
 </body>
 
 </html>

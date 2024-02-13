@@ -6,7 +6,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     @if (session()->has('success'))
-                        <div class="bg-warning p-2 rounded-3" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show">
+                        <div class="bg-warning p-2 rounded-3" x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)"
+                            x-show="show">
                             <p class="m-0">
                                 {{ session('success') }}
                             </p>
@@ -18,16 +19,13 @@
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="category">Shop Category</a></li>
-                            </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
                             <a class="nav-link" href="login">Login</a>
                         </li>
-                        @if(session()->has('user_name'))
+                        @if (session()->has('user_name'))
                             <li class="nav-item submenu">
-                                <span class="nav-link">welcom, {{ session('user_name')}}</span>
+                                <span class="nav-link">welcom, {{ session('user_name') }}</span>
                             </li>
                             <li class="nav-item submenu">
                                 <form action="/logout" method="POST">
@@ -42,6 +40,13 @@
                                 <a class="nav-link" href="registre">register</a>
                             </li>
                         @endif
+                        @if (session()->has('user_role') && (session('user_role') == '3' || session('user_role') == '1'))
+
+                            <li class="nav-item submenu dropdown">
+                                <a href="/admin/dashboard" class="nav-link dropdown-toggle">Dashboard</a>
+                            </li>
+                        @endif
+
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

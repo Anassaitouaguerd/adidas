@@ -5,8 +5,8 @@
         Reset your Password
     @endcomponent
     
-    <p>If you have any questions, please feel free to contact us.</p>
+    If you have any questions, please feel free to contact us.
 
-    Thanks,<br/>
+    Thanks,
     {{ config('app.name') }}
 @endcomponent

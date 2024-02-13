@@ -22,7 +22,7 @@ class PermissionCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'générer les permission';
 
     /**
      * Execute the console command.
@@ -62,21 +62,32 @@ class PermissionCommand extends Command
         }
 
         $modaleRoute = Permissions::all();
+        $superAdminRole = Role::where('role', 'super admin')->first();
         $adminRole = Role::where('role', 'admin')->first();
         $clientRole = Role::where('role', 'client')->first();
 
-        #admin permission 
-
+        #Super admin permission 
+        
         foreach ($modaleRoute as $route) {
+            Role_permission::create([
+                'role_id' => $superAdminRole->id,
+                'permission_id' => $route->id,
+            ]);
+        }
+        
+        #admin permission 
+        foreach ($modaleRoute as $route) {
+            if (strstr($route->permissions, 'SuperAdmin')) continue;
             Role_permission::create([
                 'role_id' => $adminRole->id,
                 'permission_id' => $route->id,
             ]);
         }
-
+        
         #client permission
         
         foreach ($modaleRoute as $route) {
+            if (strstr($route->permissions, 'SuperAdmin')) continue;
             if (strstr($route->permissions, 'admin')) continue;
             Role_permission::create(
                 [
@@ -87,3 +98,4 @@ class PermissionCommand extends Command
         }
     }
 }
+    

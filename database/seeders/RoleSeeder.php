@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class RoleSeeder extends Seeder
 {
@@ -13,15 +14,25 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('roles')->insert(
-            [
-                [
-                    'role' => 'client',
-                ],
-                [
-                    'role' => 'admin',
-                ],
-            ]
-        );
+        # Creating roles
+        Role::create([
+            'role' => 'super admin',
+        ]);
+
+        Role::create([
+            'role' => 'client',
+        ]);
+
+        Role::create([
+            'role' => 'admin',
+        ]);
+
+        # Creating a super admin user
+        User::create([
+            'name' => 'super admin',
+            'email' => 'superAdmin@gmail.com',
+            'password' => Hash::make('superadminpassword'),
+            'role_id' => 1,
+        ]);
     }
 }

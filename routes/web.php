@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\Permission;
 use Illuminate\Support\Facades\Auth;
@@ -47,10 +48,15 @@ Route::post('/admin/newProduct', [ProductController::class, 'new_product'])->mid
 Route::post('/admin/updateProduct', [ProductController::class, 'update_product'])->middleware('Permission');
 Route::post('/admin/deletePproduct', [ProductController::class, 'delete_product'])->middleware('Permission');
 # part admin User 
-Route::post('/admin/users', [UserController::class, 'index_user'])->middleware('Permission');
+Route::get('/admin/users', [UserController::class, 'index_user'])->middleware('Permission');
 Route::post('/admin/newUser', [UserController::class, 'new_user'])->middleware('Permission');
 Route::post('/admin/updateUser', [UserController::class, 'update_user'])->middleware('Permission');
 Route::post('/admin/deleteUser', [UserController::class, 'delete_user'])->middleware('Permission');
+# part SuperAdmin Role 
+Route::get('/SuperAdmin/Role', [RoleController::class, 'index_role'])->middleware('Permission');
+Route::post('/SuperAdmin/newRole', [RoleController::class, 'new_role'])->middleware('Permission');
+Route::post('/SuperAdmin/updateRole', [RoleController::class, 'update_role'])->middleware('Permission');
+Route::post('/SuperAdmin/deleteRole', [RoleController::class, 'delete_role'])->middleware('Permission');
 # part Auth 
 Route::post('/register', [AuthController::class, 'register'])->middleware('Permission');
 Route::post('/login', [AuthController::class, 'login'])->middleware('Permission');
