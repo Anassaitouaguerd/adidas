@@ -39,6 +39,8 @@
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
+    {{--  cdn to time for messages  --}}
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -91,7 +93,7 @@
                                                     <div class="form-group">
                                                         <label for="name">Role Permissions</label>
                                                         <select id="select-state" name="permission[]" multiple
-                                                            placeholder="Select a state..." autocomplete="off">
+                                                            placeholder="Select a permission..." autocomplete="off">
                                                             @foreach ($allPermissions as $permission)
                                                                 <option value="{{ $permission->id }}">
                                                                     {{ $permission->permissions }}</option>
@@ -111,7 +113,12 @@
                                 </div>
                                 {{-- end madale add new categoris --}}
                                 <div class="card-body p-3">
-                                    <h4 class="mb-3 text-sm">Name categories</h4>
+                                    @if (session()->has('successRole'))
+                                        <div class="rounded-3 w-70 text-center bg-body-secondary p-1 ms-7"
+                                            x-data="{ show: true }" x-init="setTimeout(() => show = false, 4000)" x-show="show">
+                                            <h5 class="text-body text-bolder"> {{ session('successRole') }} </h5>
+                                        </div>
+                                    @endif
                                     <div class="card-body pt-4 p-3">
                                         <ul class="list-group">
                                             @foreach ($allRoles as $role)
@@ -132,7 +139,7 @@
                                                             <i class="fas fa-pencil-alt text-dark me-2"></i>Edit</a>
                                                         </button>
                                                     </div>
-                                                    {{-- modal to update categories --}}
+                                                    {{-- modal to update role --}}
 
                                                     <div class="modal fade" id="modaleUpdate{{ $role->id }}"
                                                         tabindex="-1" role="dialog"
@@ -168,12 +175,16 @@
                                                                         <div class="form-group">
                                                                             <label for="name">Role
                                                                                 Permissions</label>
-                                                                            <select id="select-state"
-                                                                                name="permission[]" multiple
-                                                                                placeholder="Select a state..."
-                                                                                autocomplete="off">
+                                                                                <select id="select-state" name="permission[]" multiple
+                                                                                placeholder="Select a permission..." autocomplete="off">
 
-                                                                                <option value="AL">Alabama</option>
+                                                                                @foreach ($role->Role_Permession as $role_permission)
+                                                                                    {{ $role_permission }}
+                                                                                    <option
+                                                                                        value="{{ $permission->id }}" selected>
+                                                                                        {{ $permission->permissions }}
+                                                                                    </option>
+                                                                                @endforeach
                                                                             </select>
                                                                         </div>
 
@@ -251,6 +262,14 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+    <script>
+        new TomSelect("#select-state", {
+            maxItems: 100
+        });
+        new TomSelect("#permission", {
+            maxItems: 100
+        });
+    </script>
     <script src="../assets/js/core/popper.min.js"></script>
     <script src="../assets/js/core/bootstrap.min.js"></script>
     <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
@@ -268,11 +287,8 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
-    <script>
-        new TomSelect("#select-state", {
-            maxItems: 100
-        });
-    </script>
+
+
 </body>
 
 </html>
