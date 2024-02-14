@@ -68,7 +68,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- modal to add new categories --}}
+                                {{-- modal to add new role --}}
 
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -133,76 +133,14 @@
                                                             data-bs-target="#modaleDelete{{ $role->id }}">
                                                             <i class="far fa-trash-alt me-2"></i>Delete
                                                         </button>
-                                                        <button class="btn btn-link text-dark px-3 mb-0"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#modaleUpdate{{ $role->id }}">
-                                                            <i class="fas fa-pencil-alt text-dark me-2"></i>Edit</a>
+                                                        <a href="/SuperAdmin/UpdatePage/{{$role->id }}">
+                                                            <button class="btn btn-link text-dark px-3 mb-0">
+                                                                <i
+                                                                    class="fas fa-pencil-alt text-dark me-2"></i>Edit</a>
                                                         </button>
+                                                        </a>
                                                     </div>
-                                                    {{-- modal to update role --}}
-
-                                                    <div class="modal fade" id="modaleUpdate{{ $role->id }}"
-                                                        tabindex="-1" role="dialog"
-                                                        aria-labelledby="modaleUpdatetitle" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered"
-                                                            role="document">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title"
-                                                                        id="exampleModalLongTitle">
-                                                                        Modal title</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-bs-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    <form action="/SuperAdmin/updateRole"
-                                                                        method="POST" class="mt-4"
-                                                                        enctype="multipart/form-data">
-                                                                        @csrf
-                                                                        <input type="hidden"
-                                                                            value="{{ $role->id }}"
-                                                                            name="id">
-                                                                        <div class="form-group">
-                                                                            <label for="name">Role Name</label>
-                                                                            <input type="text"
-                                                                                value="{{ $role->name }}"
-                                                                                class="form-control" id="name"
-                                                                                name="name"
-                                                                                placeholder="Enter Role name">
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="name">Role
-                                                                                Permissions</label>
-                                                                                <select id="select-state" name="permission[]" multiple
-                                                                                placeholder="Select a permission..." autocomplete="off">
-
-                                                                                @foreach ($role->Role_Permession as $role_permission)
-                                                                                    {{ $role_permission }}
-                                                                                    <option
-                                                                                        value="{{ $permission->id }}" selected>
-                                                                                        {{ $permission->permissions }}
-                                                                                    </option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit"
-                                                                        class="btn btn-primary">Save changes</button>
-                                                                </div>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    {{-- end madale update categories --}}
-
-
-                                                    {{-- modal to delete categories --}}
+                                                    {{-- modal to delete role --}}
 
                                                     <div class="modal fade" id="modaleDelete{{ $role->id }}"
                                                         tabindex="-1" role="dialog"

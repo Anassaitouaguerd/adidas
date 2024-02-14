@@ -54,6 +54,7 @@ Route::post('/admin/updateUser', [UserController::class, 'update_user'])->middle
 Route::post('/admin/deleteUser', [UserController::class, 'delete_user'])->middleware('Permission');
 # part SuperAdmin Role 
 Route::get('/SuperAdmin/Role', [RoleController::class, 'index_role'])->middleware('Permission');
+Route::get('/SuperAdmin/UpdatePage/{id}', [RoleController::class, 'update_page'])->middleware('Permission');
 Route::post('/SuperAdmin/newRole', [RoleController::class, 'new_role'])->middleware('Permission');
 Route::post('/SuperAdmin/updateRole', [RoleController::class, 'update_role'])->middleware('Permission');
 Route::post('/SuperAdmin/deleteRole', [RoleController::class, 'delete_role'])->middleware('Permission');
