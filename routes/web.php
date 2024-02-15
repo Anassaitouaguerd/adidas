@@ -65,3 +65,6 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/forgotPassword', [AuthController::class, 'forgotPassword']);
 Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
+# part search
+Route::post('/search_action', [HomeController::class, 'search']);
+

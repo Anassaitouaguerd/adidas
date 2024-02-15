@@ -111,7 +111,7 @@
                                                 <li
                                                     class="list-group-item border-0 d-flex justify-content-center p-4 mb-2 bg-gray-100 border-radius-lg">
                                                     <div class="d-flex justify-content-center align-items-center">
-                                                        <img src="Uploads/{{$category->image}}" class="image_cat mb-3 text-sm">
+                                                        <img src="/Uploads/{{$category->image}}" class="image_cat mb-3 text-sm">
                                                         <h5 class="ms-4 mb-3 text-sm"> {{ $category->name }}</h5>
                                                     </div>
                                                     <div class="ms-auto text-end">

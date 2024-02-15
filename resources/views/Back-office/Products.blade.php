@@ -113,7 +113,7 @@
                 @foreach ($all_product as $product)
                     <div class="col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
-                            <img class="card-img-top" src="Uploads/{{ $product->image }}" alt="user1">
+                            <img class="card-img-top" src="/Uploads/{{ $product->image }}" alt="user1">
                             <div class="card-body">
                                 <h4 class="card-title">{{ $product->name }}</h4>
                                 <h6>Description : </h6>
@@ -126,16 +126,16 @@
                             <div class="card-footer">
                                 <div class="d-flex justify-content-around align-items-center">
                                     <button class="btn btn-danger btn-sm float-end" data-bs-toggle="modal"
-                                    data-bs-target="#modaleDelete{{ $product->id }}">delet</button>
+                                        data-bs-target="#modaleDelete{{ $product->id }}">delet</button>
                                     <button class="btn btn-secondary btn-sm float-end" data-bs-toggle="modal"
-                                    data-bs-target="#updateProduct{{$product->id}}">Edit</button>
+                                        data-bs-target="#updateProduct{{ $product->id }}">Edit</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     {{-- modal to update product --}}
 
-                    <div class="modal fade" id="updateProduct{{$product->id}}" tabindex="-1" role="dialog"
+                    <div class="modal fade" id="updateProduct{{ $product->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
@@ -150,7 +150,7 @@
                                     <form action="/admin/updateProduct" method="POST" class="mt-4"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        <input type="hidden" value="{{$product->id}}" name="id">
+                                        <input type="hidden" value="{{ $product->id }}" name="id">
                                         <div class="form-group">
                                             <label for="name">Product Image</label>
                                             <input type="file" class="form-control" id="image"
@@ -158,8 +158,8 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Product Name</label>
-                                            <input type="text" value="{{ $product->name }}" class="form-control" id="name" name="name"
-                                                placeholder="Enter product name">
+                                            <input type="text" value="{{ $product->name }}" class="form-control"
+                                                id="name" name="name" placeholder="Enter product name">
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Product Description</label>
@@ -169,14 +169,16 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="name">Product Price</label>
-                                            <input type="number" value="{{ $product->price }}" class="form-control" id="price" name="price"
-                                                min="0" placeholder="Enter product price">
+                                            <input type="number" value="{{ $product->price }}" class="form-control"
+                                                id="price" name="price" min="0"
+                                                placeholder="Enter product price">
                                         </div>
                                         <div class="form-group">
                                             <label for="category">Product Category</label>
                                             <select class="form-select" id="category" name="category">
                                                 @foreach ($all_categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}">{{ $category->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -194,17 +196,14 @@
                     {{-- end madale update product --}}
                     {{-- modal to delete categories --}}
 
-                    <div class="modal fade" id="modaleDelete{{ $product->id }}"
-                        tabindex="-1" role="dialog"
+                    <div class="modal fade" id="modaleDelete{{ $product->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="modaleDeleteTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered"
-                            role="document">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="modaleDeleteTitle">
                                         Confirm Deletion</h5>
-                                    <button type="button" class="close"
-                                        data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -217,11 +216,8 @@
                                         data-bs-dismiss="modal">Cancel</button>
                                     <form action="/admin/deletePproduct" method="POST">
                                         @csrf
-                                        <input type="hidden"
-                                            value="{{ $product->id }}"
-                                            name="id">
-                                        <button type="submit"
-                                            class="btn btn-danger">Confirm</button>
+                                        <input type="hidden" value="{{ $product->id }}" name="id">
+                                        <button type="submit" class="btn btn-danger">Confirm</button>
                                     </form>
                                 </div>
                             </div>

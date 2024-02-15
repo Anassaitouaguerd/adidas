@@ -31,7 +31,7 @@ class CategoryController extends Controller
       $this->category->name = $request->name;
       $this->category->image = $image;
       $this->category->save();
-      return redirect('/categories');
+      return redirect('/admin/categories');
    }
    public function update_category(Request $request)
    {
@@ -59,12 +59,12 @@ class CategoryController extends Controller
          $find_category->name = $request->name;
          $find_category->save();
       }
-      return redirect('/categories');
+      return redirect('/admin/categories');
    }
    public function delete_category(Request $request)
    {
       $find_category = $this->category::findOrfail($request->id);
       $find_category->delete();
-      return redirect('/categories');
+      return redirect('/admin/categories');
    }
 }

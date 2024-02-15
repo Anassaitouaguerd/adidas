@@ -40,6 +40,7 @@ class RoleController extends Controller
                 'name' => 'required',
             ],
         );
+        
         $this->role->role = $request->name;
         $this->role->save();
         $lastInsertedId = $this->role->id;

@@ -41,7 +41,6 @@
                             </li>
                         @endif
                         @if (session()->has('user_role') && (session('user_role') == '3' || session('user_role') == '1'))
-
                             <li class="nav-item submenu dropdown">
                                 <a href="/admin/dashboard" class="nav-link dropdown-toggle">Dashboard</a>
                             </li>
@@ -52,7 +51,15 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
                         <li class="nav-item">
-                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
+                            <button class="mt-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" id="search" width="18" height="18"
+                                    fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018" />
+                                    <path
+                                        d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11" />
+                                </svg>
+                            </button>
                         </li>
                     </ul>
                 </div>
@@ -61,10 +68,17 @@
     </div>
     <div class="search_input" id="search_input_box">
         <div class="container">
-            <form class="d-flex justify-content-between">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+            <form class="d-flex justify-content-between" action="search_action" method="POST">
+                @csrf
+                <input type="text" name="search_title" class="form-control" id="search_input" placeholder="Search Here">
+                <button type="submit" class="btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="close_search" width="18" height="18"
+                        fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                        <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018" />
+                        <path
+                            d="M13 6.5a6.47 6.47 0 0 1-1.258 3.844q.06.044.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11" />
+                    </svg>
+                </button>
             </form>
         </div>
     </div>

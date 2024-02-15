@@ -17,8 +17,15 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $products = $this->product::join('categories', 'products.category_id','=','categories.id')->select('products.*' , 'categories.name as category_name')->get();
+        $products = $this->product::join('categories', 'products.category_id', '=', 'categories.id')->select('products.*', 'categories.name as category_name')->get();
         $categories = $this->categorie::all();
-        return view('Front-office.index',compact('products','categories'));
+        return view('Front-office.index', compact('products', 'categories'));
+    }
+    public function search(Request $request)
+    {
+
+        $products = Product::where('name', 'like', '%' . $request->search_title . '%')->get();
+        $categories = $this->categorie::all();
+        return view('Front-office.index', compact('products', 'categories'));
     }
 }

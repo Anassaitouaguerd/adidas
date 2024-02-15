@@ -58,7 +58,6 @@ class AuthController extends Controller
             $user->remember_token = Str::random(30);
             $user->save();
             Mail::to($user->email)->send(new ForgotPassMail($user));
-            // ddd('hello');
             return back()->with('success', 'Checke your Email');
         } else {
             return back()->with('error', 'The account not found');
