@@ -15,13 +15,13 @@
                     @endif
                     <ul class="nav navbar-nav menu_nav ml-auto">
 
-                        <li class="nav-item"><a class="nav-link" href="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/home">Home</a></li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">Shop</a>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a class="nav-link" href="login">Login</a>
+                            <a class="nav-link" href="/login">Login</a>
                         </li>
                         @if (session()->has('user_name'))
                             <li class="nav-item submenu">
@@ -37,7 +37,7 @@
                             </li>
                         @else
                             <li class="nav-item submenu dropdown">
-                                <a class="nav-link" href="registre">register</a>
+                                <a class="nav-link" href="/registre">register</a>
                             </li>
                         @endif
                         @if (session()->has('user_role') && (session('user_role') == '3' || session('user_role') == '1'))

@@ -67,4 +67,5 @@ Route::get('/reset/{token}', [AuthController::class, 'reset']);
 Route::post('/reset/{token}', [AuthController::class, 'resetPassword']);
 # part search
 Route::post('/search_action', [HomeController::class, 'search']);
-
+# part filtere to categorie
+Route::get('/ProductCtegorie/{id}', [HomeController::class, 'filtre']);

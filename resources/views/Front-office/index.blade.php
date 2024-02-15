@@ -5,7 +5,7 @@
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="assets/front-office/img/fav.png">
+	<link rel="shortcut icon" href="/assets/front-office/img/fav.png">
 	<!-- Author Meta -->
 	<meta name="author" content="CodePixar">
 	<!-- Meta Description -->
@@ -19,17 +19,17 @@
 	<!--
 		CSS
 		============================================= -->
-	<link rel="stylesheet" href="assets/css/front-office/css/linearicons.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/themify-icons.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/bootstrap.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/owl.carousel.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/nice-select.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/nouislider.min.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/ion.rangeSlider.css" />
-	<link rel="stylesheet" href="assets/css/front-office/css/ion.rangeSlider.skinFlat.css" />
-	<link rel="stylesheet" href="assets/css/front-office/css/magnific-popup.css">
-	<link rel="stylesheet" href="assets/css/front-office/css/main.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/linearicons.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/themify-icons.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/bootstrap.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/owl.carousel.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/nice-select.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/nouislider.min.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/ion.rangeSlider.css" />
+	<link rel="stylesheet" href="/assets/css/front-office/css/ion.rangeSlider.skinFlat.css" />
+	<link rel="stylesheet" href="/assets/css/front-office/css/magnific-popup.css">
+	<link rel="stylesheet" href="/assets/css/front-office/css/main.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 </head>
@@ -100,14 +100,14 @@
 				@foreach($categories as $category)
 				<div class="col-lg-2 col-md-2 category">
 					<div class="single-deal">
+						<a href="/ProductCtegorie/{{ $category->id }}">
 						<div class="overlay"></div>
-						<img class="img-fluid" src="Uploads/{{$category->image}}" alt="">
-						<a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
+						<img class="img-fluid" src="/Uploads/{{$category->image}}" alt="">
 							<div class="deal-details">
 								<h6 class="deal-title">{{$category->name}}</h6>
 							</div>
-						</a>
-					</div>
+						</div>
+					</a>
 				</div>
 				@endforeach
 				
@@ -128,11 +128,16 @@
 					@foreach ($products as $product)
 					<div class="col-lg-3 col-md-6">
 						<div class="single-product">
-							<img class="img-fluid" src="Uploads/{{ $product->image }}" alt="">
+							<img class="img-fluid" src="/Uploads/{{ $product->image }}" alt="">
 							<div class="product-details">
 								<h6>{{$product->name}}</h6>
 								<div class="price">
 									<h6>{{$product->price}} DH</h6>
+									<h6 class="l-through text-danger">%20</h6>
+								</div>
+								<div class="price">
+									<h5>Categorie</h5>
+									<h6>{{$product->category_name}}</h6>
 									<h6 class="l-through text-danger">%20</h6>
 								</div>
 								<div class="prd-bottom">
@@ -159,9 +164,10 @@
 					</div>
 					@endforeach
 				</div>
+				{{ $products->links() }}
 			</div>
 		</div>
-
+		
 	</section>
 
 
@@ -245,22 +251,22 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!-- End footer Area -->
 
-	<script src="assets/js/front-office/js/vendor/jquery-2.2.4.min.js"></script>
+	<script src="/assets/js/front-office/js/vendor/jquery-2.2.4.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
 	 crossorigin="anonymous"></script>
 	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-	<script src="assets/js/front-office/js/vendor/bootstrap.min.js"></script>
-	<script src="assets/js/front-office/js/jquery.ajaxchimp.min.js"></script>
-	<script src="assets/js/front-office/js/jquery.nice-select.min.js"></script>
-	<script src="assets/js/front-office/js/jquery.sticky.js"></script>
-	<script src="assets/js/front-office/js/nouislider.min.js"></script>
-	<script src="assets/js/front-office/js/countdown.js"></script>
-	<script src="assets/js/front-office/js/jquery.magnific-popup.min.js"></script>
-	<script src="assets/js/front-office/js/owl.carousel.min.js"></script>
+	<script src="/assets/js/front-office/js/vendor/bootstrap.min.js"></script>
+	<script src="/assets/js/front-office/js/jquery.ajaxchimp.min.js"></script>
+	<script src="/assets/js/front-office/js/jquery.nice-select.min.js"></script>
+	<script src="/assets/js/front-office/js/jquery.sticky.js"></script>
+	<script src="/assets/js/front-office/js/nouislider.min.js"></script>
+	<script src="/assets/js/front-office/js/countdown.js"></script>
+	<script src="/assets/js/front-office/js/jquery.magnific-popup.min.js"></script>
+	<script src="/assets/js/front-office/js/owl.carousel.min.js"></script>
 	<!--gmaps Js-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-	<script src="assets/js/front-office/js/gmaps.min.js"></script>
-	<script src="assets/js/front-office/js/main.js"></script>
+	<script src="/assets/js/front-office/js/gmaps.min.js"></script>
+	<script src="/assets/js/front-office/js/main.js"></script>
 </body>
 
 </html>
